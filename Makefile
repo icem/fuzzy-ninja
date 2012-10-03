@@ -9,7 +9,8 @@ LIB_FUZZY_NINJA_TARGETS = \
 	obj/FuzzyNinja/MpiApplication.o \
 	obj/FuzzyNinja/MpiEnvironment.o \
 	obj/FuzzyNinja/Interfaces/IProcess.o \
-	obj/FuzzyNinja/Interfaces/IProcessFactory.o
+	obj/FuzzyNinja/Interfaces/IProcessFactory.o \
+	obj/FuzzyNinja/Objects/Communicator.o
 
 COMPUTE_PI_TARGETS = \
 	obj/FuzzyNinja/Examples/ComputePi/Program.o \
