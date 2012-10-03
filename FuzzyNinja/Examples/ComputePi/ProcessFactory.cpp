@@ -10,17 +10,28 @@ namespace FuzzyNinja
         namespace ComputePi
         {
 
+ProcessFactory::ProcessFactory(int anIntervalCount)
+    : intervalCount(anIntervalCount)
+{
+    // Do nothing.
+}
+
 ::FuzzyNinja::Interfaces::IProcess::SharedPtr ProcessFactory::createProcess(
     const int rank,
     const int processCount)
 {
     if (rank == 0)
     {
-        return std::make_shared<MasterProcess>(rank, processCount);
+        return std::make_shared<MasterProcess>(
+            rank,
+            processCount,
+            intervalCount);
     }
     else
     {
-        return std::make_shared<SlaveProcess>(rank, processCount);
+        return std::make_shared<SlaveProcess>(
+            rank,
+            processCount);
     }
 }
 

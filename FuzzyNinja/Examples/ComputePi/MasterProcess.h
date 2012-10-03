@@ -12,8 +12,13 @@ namespace FuzzyNinja
 
 class MasterProcess: public Process
 {
+private:
+    int intervalCount;
 public:
-    MasterProcess(int aRank, int aProcessCount);
+    MasterProcess(
+        int aRank,
+        int aProcessCount,
+        int anIntervalCount);
     virtual int run();
 };
 

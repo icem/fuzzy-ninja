@@ -7,8 +7,8 @@ namespace FuzzyNinja
         namespace ComputePi
         {
 
-MasterProcess::MasterProcess(int aRank, int aProcessCount)
-    : Process(aRank, aProcessCount)
+MasterProcess::MasterProcess(int aRank, int aProcessCount, int anIntervalCount)
+    : Process(aRank, aProcessCount), intervalCount(anIntervalCount)
 {
     // Do nothing.
 }
