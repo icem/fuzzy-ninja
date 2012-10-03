@@ -1,5 +1,5 @@
-#ifndef FUZZY_NINJA_MPI_ENVIRONMENT
-#define FUZZY_NINJA_MPI_ENVIRONMENT
+#ifndef FUZZY_NINJA_MPI_ENVIRONMENT_H
+#define FUZZY_NINJA_MPI_ENVIRONMENT_H
 
 namespace FuzzyNinja
 {
@@ -8,8 +8,10 @@ class MpiEnvironment
 {
 public:
     static void Initialize(
-        const int argc,
-        const char *argv[]);
+        int *argc,
+        char **argv[]);
+    static void CheckCall(
+        const int errorCode);
     static void Finalize();
 };
 

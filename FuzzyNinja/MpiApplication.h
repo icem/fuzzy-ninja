@@ -6,7 +6,10 @@ namespace FuzzyNinja
 
 class MpiApplication
 {
-    
+public:
+    MpiApplication(int *argc, char **argv[]);
+    int run();
+    virtual ~MpiApplication();
 };
 
 }
