@@ -12,8 +12,14 @@ namespace FuzzyNinja
 
 class Process: public ::FuzzyNinja::Interfaces::IProcess
 {
+private:
+    int rank;
+    int processCount;
+protected:
+    void computePartially() const;
 public:
-    virtual int run();
+    Process(int aRank, int aProcessCount);
+    virtual int run() = 0;
 };
 
         }

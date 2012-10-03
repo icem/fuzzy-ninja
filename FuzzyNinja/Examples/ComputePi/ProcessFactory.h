@@ -14,7 +14,9 @@ namespace FuzzyNinja
 class ProcessFactory: public ::FuzzyNinja::Interfaces::IProcessFactory
 {
 public:
-    virtual ::FuzzyNinja::Interfaces::IProcess::SharedPtr createProcess(const int rank);
+    virtual ::FuzzyNinja::Interfaces::IProcess::SharedPtr createProcess(
+        const int aRank,
+        const int aProcessCount);
 };
 
         }

@@ -11,13 +11,15 @@ namespace FuzzyNinja
         namespace ComputePi
         {
 
-int Process::run()
+Process::Process(int aRank, int aProcessCount)
+    : rank(aRank), processCount(aProcessCount)
 {
-    printf(
-        "Running %d of %d ...\n",
-        Objects::Communicator::World.getRank(),
-        Objects::Communicator::World.getSize());
-    return 0;
+    // Do nothing.
+}
+
+void Process::computePartially() const
+{
+    printf("computePartially\n");
 }
 
         }

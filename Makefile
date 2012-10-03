@@ -15,7 +15,9 @@ LIB_FUZZY_NINJA_TARGETS = \
 COMPUTE_PI_TARGETS = \
 	obj/FuzzyNinja/Examples/ComputePi/Program.o \
 	obj/FuzzyNinja/Examples/ComputePi/ProcessFactory.o \
-	obj/FuzzyNinja/Examples/ComputePi/Process.o
+	obj/FuzzyNinja/Examples/ComputePi/Process.o \
+	obj/FuzzyNinja/Examples/ComputePi/MasterProcess.o \
+	obj/FuzzyNinja/Examples/ComputePi/SlaveProcess.o
 
 # Main targets.
 
