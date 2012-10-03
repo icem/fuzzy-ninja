@@ -7,7 +7,13 @@ namespace FuzzyNinja
     {
         namespace ComputePi
         {
-            
+
+class Program
+{
+public:
+    static int Main(int argc, char *argv[]);
+};
+
         }
     }
 }

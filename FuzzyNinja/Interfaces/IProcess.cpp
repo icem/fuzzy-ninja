@@ -1,11 +1,1 @@
-#include "IProcess.h"
-
-namespace FuzzyNinja
-{
-    namespace Interfaces
-    {
-
-
-
-    }
-}
+#include "FuzzyNinja/Interfaces/IProcess.h"

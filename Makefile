@@ -8,10 +8,13 @@ LIB_FUZZY_NINJA_TARGETS = \
 	obj/FuzzyNinja/MpiException.o \
 	obj/FuzzyNinja/MpiApplication.o \
 	obj/FuzzyNinja/MpiEnvironment.o \
-	obj/FuzzyNinja/Interfaces/IProcess.o
+	obj/FuzzyNinja/Interfaces/IProcess.o \
+	obj/FuzzyNinja/Interfaces/IProcessFactory.o
 
 COMPUTE_PI_TARGETS = \
-	obj/FuzzyNinja/Examples/ComputePi/Program.o
+	obj/FuzzyNinja/Examples/ComputePi/Program.o \
+	obj/FuzzyNinja/Examples/ComputePi/ProcessFactory.o \
+	obj/FuzzyNinja/Examples/ComputePi/Process.o
 
 # Main targets.
 
@@ -31,9 +34,10 @@ obj/%.o: %.cpp
 	@mkdir --parents $(@D)
 	@$(CXX) $(CXX_FLAGS) \
 		-I$(MPI_INCLUDE_PATH) \
-		-IFuzzyNinja \
+		-I. \
 		-c $< \
-		-o $@
+		-o $@ \
+		-std=c++0x
 
 # Projects.
 

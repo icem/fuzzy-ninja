@@ -1,5 +1,5 @@
-#include "MpiApplication.h"
-#include "MpiEnvironment.h"
+#include "FuzzyNinja/MpiApplication.h"
+#include "FuzzyNinja/MpiEnvironment.h"
 
 #include <mpi.h>
 
@@ -11,10 +11,9 @@ MpiApplication::MpiApplication(int *argc, char **argv[])
     MpiEnvironment::Initialize(argc, argv);
 }
 
-int MpiApplication::run()
+int MpiApplication::run(::FuzzyNinja::Interfaces::IProcessFactory &aProcessFactory)
 {
-    // TODO
-    return 0;
+    return aProcessFactory.createProcess(0)->run();
 }
 
 MpiApplication::~MpiApplication()
