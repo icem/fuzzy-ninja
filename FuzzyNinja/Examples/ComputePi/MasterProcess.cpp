@@ -1,5 +1,7 @@
 #include "FuzzyNinja/Examples/ComputePi/MasterProcess.h"
 
+#include <stdio.h>
+
 namespace FuzzyNinja
 {
     namespace Examples
@@ -15,6 +17,7 @@ MasterProcess::MasterProcess(int aRank, int aProcessCount, int anIntervalCount)
 
 int MasterProcess::run()
 {
+    printf("intervalCount: %d\n", intervalCount);
     computePartially();
     return 0;
 }

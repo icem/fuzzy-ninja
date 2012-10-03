@@ -10,6 +10,8 @@ namespace FuzzyNinja
 
 class Program
 {
+private:
+    static void PrintHelp();
 public:
     static int Main(int argc, char *argv[]);
 };
