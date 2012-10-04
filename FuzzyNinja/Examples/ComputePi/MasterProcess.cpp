@@ -45,7 +45,7 @@ int MasterProcess::run()
 
     fprintf(
         stderr,
-        "[%d] result: %.12lf\n",
+        "[%d] result: %.16lf\n",
         rank,
         result);
     fprintf(stderr,

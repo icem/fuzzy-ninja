@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+CC = clang
+CC_FLAGS = -Wall -Werror -O3
 CXX = clang++
 CXX_FLAGS = -Wall -Werror -O3
 MPI_INCLUDE_PATH = /usr/include/mpi
@@ -23,7 +25,7 @@ COMPUTE_PI_TARGETS = \
 
 # Main targets.
 
-build: bin/libfuzzyninja.a bin/compute-pi
+build: bin/libfuzzyninja.a bin/compute-pi bin/compute-pi-old
 	@echo '[ Built. ]'
 
 clean:
@@ -61,5 +63,14 @@ bin/compute-pi: \
 		$(COMPUTE_PI_TARGETS) \
 		-Lbin \
 		-lfuzzyninja \
+		-lmpi \
+		-o $@
+
+bin/compute-pi-old:
+	@echo '[ Making executable $@ ... ]'
+	@mkdir --parents $(@D)
+	@$(CC) $(CC_FLAGS) \
+		OldSchool/compute-pi-old.c \
+		-I$(MPI_INCLUDE_PATH) \
 		-lmpi \
 		-o $@
