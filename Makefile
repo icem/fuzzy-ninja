@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 CXX = clang++
-CXX_FLAGS = -Wall -O3
+CXX_FLAGS = -Wall -Werror -O3
 MPI_INCLUDE_PATH = /usr/include/mpi
 
 LIB_FUZZY_NINJA_TARGETS = \
@@ -11,7 +11,8 @@ LIB_FUZZY_NINJA_TARGETS = \
 	obj/FuzzyNinja/Interfaces/IProcess.o \
 	obj/FuzzyNinja/Interfaces/IProcessFactory.o \
 	obj/FuzzyNinja/Objects/Communicator.o \
-	obj/FuzzyNinja/Objects/Broadcast.o
+	obj/FuzzyNinja/Objects/Broadcast.o \
+	obj/FuzzyNinja/Objects/Reduce.o
 
 COMPUTE_PI_TARGETS = \
 	obj/FuzzyNinja/Examples/ComputePi/Program.o \

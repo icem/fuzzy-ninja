@@ -2,6 +2,7 @@
 
 #include "FuzzyNinja/Objects/Communicator.h"
 #include "FuzzyNinja/Objects/Broadcast.h"
+#include "FuzzyNinja/Objects/Reduce.h"
 
 #include <stdio.h>
 
@@ -20,15 +21,27 @@ MasterProcess::MasterProcess(int aRank, int aProcessCount, int anIntervalCount)
 
 int MasterProcess::run()
 {
+    double partialValue = 0.0;
+    double result = 0.0;
     Objects::Broadcast all(0, Objects::Communicator::World);
+    Objects::Reduce reduce(0, Objects::Communicator::World, MPI_SUM);
 
     fprintf(
         stderr,
         "[%d] intervalCount: %d\n",
         rank,
         intervalCount);
+
     all << intervalCount;
-    computePartially(intervalCount);
+    partialValue = computePartially(intervalCount);
+    result = reduce << partialValue;
+
+    fprintf(
+        stderr,
+        "[%d] Result: %.12lf\n",
+        rank,
+        result);
+
     return 0;
 }
 

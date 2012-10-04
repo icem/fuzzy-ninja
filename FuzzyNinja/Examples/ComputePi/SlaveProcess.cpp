@@ -2,6 +2,7 @@
 
 #include "FuzzyNinja/Objects/Communicator.h"
 #include "FuzzyNinja/Objects/Broadcast.h"
+#include "FuzzyNinja/Objects/Reduce.h"
 
 namespace FuzzyNinja
 {
@@ -19,10 +20,14 @@ SlaveProcess::SlaveProcess(int aRank, int aProcessCount)
 int SlaveProcess::run()
 {
     int intervalCount = 0;
+    double partialValue = 0.0;
     Objects::Broadcast root(0, Objects::Communicator::World);
+    Objects::Reduce reduce(0, Objects::Communicator::World, MPI_SUM);
 
     root >> intervalCount;
-    computePartially(intervalCount);
+    partialValue = computePartially(intervalCount);
+    reduce << partialValue;
+
     return 0;
 }
 
