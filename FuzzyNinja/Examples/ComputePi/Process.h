@@ -16,7 +16,7 @@ protected:
     int rank;
     int processCount;
 
-    void computePartially(int anIntervalCount) const;
+    double computePartially(int anIntervalCount) const;
 public:
     Process(int aRank, int aProcessCount);
     virtual int run() = 0;

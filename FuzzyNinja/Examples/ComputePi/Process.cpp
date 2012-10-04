@@ -17,13 +17,30 @@ Process::Process(int aRank, int aProcessCount)
     // Do nothing.
 }
 
-void Process::computePartially(int anIntervalCount) const
+double Process::computePartially(int anIntervalCount) const
 {
+    int i;
+    double partialValue = 0.0;
+    double h;
+    double sum = 0.0;
+    double x;
+
     fprintf(
         stderr,
         "[%d] computePartially %d\n",
         rank,
         anIntervalCount);
+
+    h = 1.0 / anIntervalCount;
+    for (i = rank + 1; i <= anIntervalCount; i += processCount)
+    {
+        x = h * ((double)i - 0.5);
+        sum += 4.0 / (1.0 + x*x);
+    }
+    partialValue = h * sum;
+
+    fprintf(stderr, "[%d] partialValue: %.12lf\n", rank, partialValue);
+    return partialValue;
 }
 
         }
