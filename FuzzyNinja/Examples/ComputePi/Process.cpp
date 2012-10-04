@@ -17,9 +17,13 @@ Process::Process(int aRank, int aProcessCount)
     // Do nothing.
 }
 
-void Process::computePartially() const
+void Process::computePartially(int anIntervalCount) const
 {
-    printf("computePartially\n");
+    fprintf(
+        stderr,
+        "[%d] computePartially %d\n",
+        rank,
+        anIntervalCount);
 }
 
         }

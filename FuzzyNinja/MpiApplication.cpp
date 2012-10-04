@@ -14,8 +14,8 @@ MpiApplication::MpiApplication(int *argc, char **argv[])
 
 int MpiApplication::run(::FuzzyNinja::Interfaces::IProcessFactory &aProcessFactory)
 {
-    int rank = Objects::Communicator::World.getRank();
-    int processCount = Objects::Communicator::World.getSize();
+    int rank = Objects::Communicator::World->getRank();
+    int processCount = Objects::Communicator::World->getSize();
     return aProcessFactory.createProcess(rank, processCount)->run();
 }
 

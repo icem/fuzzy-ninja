@@ -1,5 +1,8 @@
 #include "FuzzyNinja/Examples/ComputePi/SlaveProcess.h"
 
+#include "FuzzyNinja/Objects/Communicator.h"
+#include "FuzzyNinja/Objects/Broadcast.h"
+
 namespace FuzzyNinja
 {
     namespace Examples
@@ -15,7 +18,11 @@ SlaveProcess::SlaveProcess(int aRank, int aProcessCount)
 
 int SlaveProcess::run()
 {
-    computePartially();
+    int intervalCount = 0;
+    Objects::Broadcast root(0, Objects::Communicator::World);
+
+    root >> intervalCount;
+    computePartially(intervalCount);
     return 0;
 }
 

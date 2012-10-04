@@ -7,7 +7,8 @@ namespace FuzzyNinja
     namespace Objects
     {
 
-const Communicator Communicator::World = Communicator(MPI_COMM_WORLD);
+const Communicator::SharedPtr Communicator::World = 
+    ::std::make_shared<Communicator>(MPI_COMM_WORLD);
 
 Communicator::Communicator(const MPI_Comm handle): handle(handle)
 {
