@@ -22,6 +22,11 @@ void MpiEnvironment::checkCall(
     }
 }
 
+double MpiEnvironment::getTime()
+{
+    return MPI_Wtime();
+}
+
 void MpiEnvironment::finalize()
 {
     checkCall(MPI_Finalize());

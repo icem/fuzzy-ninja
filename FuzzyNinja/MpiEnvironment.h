@@ -12,6 +12,7 @@ public:
         char **argv[]);
     static void checkCall(
         const int errorCode);
+    static double getTime();
     static void finalize();
 };
 
