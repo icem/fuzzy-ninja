@@ -23,7 +23,7 @@ MPI_Comm Communicator::getHandle() const
 int Communicator::getSize() const
 {
     int size;
-    ::FuzzyNinja::MpiEnvironment::CheckCall(
+    ::FuzzyNinja::MpiEnvironment::checkCall(
         MPI_Comm_size(handle, &size));
     return size;
 }
@@ -31,7 +31,7 @@ int Communicator::getSize() const
 int Communicator::getRank() const
 {
     int rank;
-    ::FuzzyNinja::MpiEnvironment::CheckCall(
+    ::FuzzyNinja::MpiEnvironment::checkCall(
         MPI_Comm_rank(handle, &rank));
     return rank;
 }

@@ -20,7 +20,7 @@ double Reduce::operator<<(double value)
 {
     double buffer = 0.0;
 
-    ::FuzzyNinja::MpiEnvironment::CheckCall(
+    ::FuzzyNinja::MpiEnvironment::checkCall(
         MPI_Reduce(
             &value,
             &buffer,

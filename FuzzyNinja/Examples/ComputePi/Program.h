@@ -11,9 +11,9 @@ namespace FuzzyNinja
 class Program
 {
 private:
-    static void PrintHelp();
+    static void printHelp();
 public:
-    static int Main(int argc, char *argv[]);
+    static int main(int argc, char *argv[]);
 };
 
         }

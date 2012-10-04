@@ -7,12 +7,12 @@ namespace FuzzyNinja
 class MpiEnvironment
 {
 public:
-    static void Initialize(
+    static void initialize(
         int *argc,
         char **argv[]);
-    static void CheckCall(
+    static void checkCall(
         const int errorCode);
-    static void Finalize();
+    static void finalize();
 };
 
 }

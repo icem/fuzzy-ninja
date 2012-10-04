@@ -17,7 +17,7 @@ Broadcast::Broadcast(
 
 Broadcast& Broadcast::operator<<(int value)
 {
-    ::FuzzyNinja::MpiEnvironment::CheckCall(
+    ::FuzzyNinja::MpiEnvironment::checkCall(
         MPI_Bcast(&value, 1, MPI_INT, root, communicator->getHandle()));
     return *this;
 }
@@ -25,7 +25,7 @@ Broadcast& Broadcast::operator<<(int value)
 Broadcast& Broadcast::operator>>(int &value)
 {
     int buffer = 0;
-    ::FuzzyNinja::MpiEnvironment::CheckCall(
+    ::FuzzyNinja::MpiEnvironment::checkCall(
         MPI_Bcast(&buffer, 1, MPI_INT, root, communicator->getHandle()));
     value = buffer;
     return *this;

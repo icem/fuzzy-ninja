@@ -12,19 +12,19 @@ namespace FuzzyNinja
         namespace ComputePi
         {
 
-void Program::PrintHelp()
+void Program::printHelp()
 {
     printf("Usage: mpiexec -n <process-count> compute-pi <interval-count>\n\n");
 }
 
-int Program::Main(int argc, char *argv[])
+int Program::main(int argc, char *argv[])
 {
     int intervalCount;
 
     ::FuzzyNinja::MpiApplication application(&argc, &argv);
     if (argc != 2)
     {
-        PrintHelp();
+        printHelp();
         return 1;
     }
 
@@ -40,5 +40,5 @@ int Program::Main(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-    return ::FuzzyNinja::Examples::ComputePi::Program::Main(argc, argv);
+    return ::FuzzyNinja::Examples::ComputePi::Program::main(argc, argv);
 }

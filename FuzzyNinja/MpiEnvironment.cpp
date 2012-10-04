@@ -6,14 +6,14 @@
 namespace FuzzyNinja
 {
 
-void MpiEnvironment::Initialize(
+void MpiEnvironment::initialize(
     int *argc,
     char **argv[])
 {
-    CheckCall(MPI_Init(argc, argv));
+    checkCall(MPI_Init(argc, argv));
 }
 
-void MpiEnvironment::CheckCall(
+void MpiEnvironment::checkCall(
     const int errorCode)
 {
     if (errorCode != MPI_SUCCESS)
@@ -22,9 +22,9 @@ void MpiEnvironment::CheckCall(
     }
 }
 
-void MpiEnvironment::Finalize()
+void MpiEnvironment::finalize()
 {
-    CheckCall(MPI_Finalize());
+    checkCall(MPI_Finalize());
 }
 
 }

@@ -9,7 +9,7 @@ namespace FuzzyNinja
 
 MpiApplication::MpiApplication(int *argc, char **argv[])
 {
-    MpiEnvironment::Initialize(argc, argv);
+    MpiEnvironment::initialize(argc, argv);
 }
 
 int MpiApplication::run(::FuzzyNinja::Interfaces::IProcessFactory &aProcessFactory)
@@ -21,7 +21,7 @@ int MpiApplication::run(::FuzzyNinja::Interfaces::IProcessFactory &aProcessFacto
 
 MpiApplication::~MpiApplication()
 {
-    MpiEnvironment::Finalize();
+    MpiEnvironment::finalize();
 }
 
 }
