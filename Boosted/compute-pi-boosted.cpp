@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         ::std::cout.precision(18);
         ::std::cout << "Pi: " << answer << ::std::endl;
         ::std::cout.precision(3);
-        ::std::cout << "Time: " << timer.elapsed() << ::std::endl;
+        ::std::cout << "Time: " << timer.elapsed() << "s" << ::std::endl;
     }
     else
     {

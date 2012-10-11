@@ -70,6 +70,7 @@ bin/compute-pi: \
 		-Lbin \
 		-lfuzzyninja \
 		-lmpi \
+		-lmpi_cxx \
 		-o $@
 	@echo '[ Done $@. ]'
 
