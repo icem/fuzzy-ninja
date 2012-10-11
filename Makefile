@@ -1,10 +1,12 @@
 #!/usr/bin/make -f
 
-CC = clang
-CC_FLAGS = -Wall -Werror -O3
-CXX = clang++
-CXX_FLAGS = -Wall -Werror -O3
+CC = gcc
+CC_FLAGS = -Wall -Werror -O3 -flto
+CXX = g++
+CXX_FLAGS = -Wall -Werror -O3 -flto
 MPI_INCLUDE_PATH = /usr/include/mpi
+MPIXX = mpic++
+MPIXX_FLAGS = -Wall -Werror -O3 -flto
 
 LIB_FUZZY_NINJA_TARGETS = \
 	obj/FuzzyNinja/MpiException.o \
@@ -25,7 +27,11 @@ COMPUTE_PI_TARGETS = \
 
 # Main targets.
 
-build: bin/libfuzzyninja.a bin/compute-pi bin/compute-pi-old
+build: \
+	bin/libfuzzyninja.a \
+	bin/compute-pi \
+	bin/compute-pi-old \
+	bin/compute-pi-boosted
 	@echo '[ Built. ]'
 
 clean:
@@ -65,6 +71,7 @@ bin/compute-pi: \
 		-lfuzzyninja \
 		-lmpi \
 		-o $@
+	@echo '[ Done $@. ]'
 
 bin/compute-pi-old:
 	@echo '[ Making executable $@ ... ]'
@@ -74,3 +81,23 @@ bin/compute-pi-old:
 		-I$(MPI_INCLUDE_PATH) \
 		-lmpi \
 		-o $@
+	@echo '[ Done $@. ]'
+
+obj/Boosted/compute-pi-boosted.o:
+	@echo '[ Compiling $< ... ]'
+	@mkdir --parents $(@D)
+	@$(MPIXX) $(MPIXX_FLAGS) \
+		-I$(MPI_INCLUDE_PATH) \
+		-I. \
+		-c Boosted/compute-pi-boosted.cpp \
+		-o $@ \
+
+bin/compute-pi-boosted: obj/Boosted/compute-pi-boosted.o
+	@echo '[ Making executable $@ ... ]'
+	@mkdir --parents $(@D)
+	@$(MPIXX) $(MPIXX_FLAGS) \
+		$< \
+		-lboost_mpi \
+		-lboost_serialization \
+		-o $@
+	@echo '[ Done $@. ]'
