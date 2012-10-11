@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
         ::std::istringstream(argv[1]) >> intervalCount;
     }
 
+    ::boost::mpi::timer timer;
+
     ::boost::mpi::broadcast(world, intervalCount, 0);
 
     ::std::cout << "[" << world.rank() << "] intervalCount: " << intervalCount
@@ -53,13 +55,24 @@ int main(int argc, char *argv[])
     {
         double answer;
 
-        reduce(world, partialValue, answer, ::std::plus<double>(), 0);
+        ::boost::mpi::reduce(
+            world,
+            partialValue,
+            answer,
+            ::std::plus<double>(), 0);
+
         ::std::cout.precision(18);
         ::std::cout << "Pi: " << answer << ::std::endl;
+        ::std::cout.precision(3);
+        ::std::cout << "Time: " << timer.elapsed() << ::std::endl;
     }
     else
     {
-        reduce(world, partialValue, ::std::plus<double>(), 0);
+        ::boost::mpi::reduce(
+            world,
+            partialValue,
+            ::std::plus<double>(),
+            0);
     }
 
     return 0;
