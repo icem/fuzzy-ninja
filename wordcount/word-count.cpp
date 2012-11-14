@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <boost/mpi.hpp>
+#include <boost/algorithm/string.hpp> 
 #include <boost/serialization/map.hpp>
 
 using namespace std;
@@ -14,7 +15,7 @@ void print_help()
                 << endl;
 }
 
-char separators[] = " ,.\n-+;:!?()\t[]{}<>'\"";
+char separators[] = " ,.\n-+;:!?()\t[]{}<>'`\"";
 
 bool is_seperator (char c) { 
     char* end = separators + sizeof(separators) / sizeof(separators[0]);            
@@ -105,7 +106,6 @@ int main(int argc, char *argv[])
         mpi::broadcast(world, max_chunk_size, master_rank);
         input = new char[max_chunk_size];
         world.recv(master_rank, 0, input, max_chunk_size);
-
         //cout << "worker #" << world.rank() << ": '" << input << "'" << endl; //DEBUG
     }
     //barrier and timing
@@ -118,13 +118,16 @@ int main(int argc, char *argv[])
         word = strtok(input,separators);
         while (word != NULL)
         {
-            stat[*new string(word)] += 1;
+            string s_word(word);
+            boost::algorithm::to_lower(s_word);
+            stat[s_word] += 1;
             word = strtok (NULL, separators);
         }
         vector<string> smth;
         world.send(master_rank, 1, smth);
     }
 
+    // collect results
     mpi::gather(world, stat, stats, master_rank);
 
     if(world.rank() == master_rank)
@@ -136,6 +139,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    // output sorted results
     if (world.rank() == master_rank) 
     {
         cout << "Time: " << timer.elapsed() << "s" << endl;
