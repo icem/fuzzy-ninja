@@ -31,7 +31,8 @@ build: \
 	bin/libfuzzyninja.a \
 	bin/compute-pi \
 	bin/compute-pi-old \
-	bin/compute-pi-boosted
+	bin/compute-pi-boosted \
+	bin/wordcount 
 	@echo '[ Built. ]'
 
 clean:
@@ -94,6 +95,16 @@ obj/Boosted/compute-pi-boosted.o:
 		-o $@ \
 
 bin/compute-pi-boosted: obj/Boosted/compute-pi-boosted.o
+	@echo '[ Making executable $@ ... ]'
+	@mkdir --parents $(@D)
+	@$(MPIXX) $(MPIXX_FLAGS) \
+		$< \
+		-lboost_mpi \
+		-lboost_serialization \
+		-o $@
+	@echo '[ Done $@. ]'
+
+bin/wordcount: obj/wordcount/word-count.o
 	@echo '[ Making executable $@ ... ]'
 	@mkdir --parents $(@D)
 	@$(MPIXX) $(MPIXX_FLAGS) \
